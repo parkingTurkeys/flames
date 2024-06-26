@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  
+  <button id="login">Sign in with Google</button>
+  <a href = "create.html"> create </a>
+  <div id="postsContainer"></div>
+  <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+      import {
+          getAuth,
+          signInWithPopup,
+          GoogleAuthProvider,
+      } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+    const firebaseConfig = {
+      apiKey: "AIzaSyDtVw1ltQmqFv-Hw2NsvQnmpM7HHA9t0V8",
+      authDomain: "flames----a-social-media.firebaseapp.com",
+      projectId: "flames----a-social-media",
+      storageBucket: "flames----a-social-media.appspot.com",
+      messagingSenderId: "756225538146",
+      appId: "1:756225538146:web:7aab03eecef8727d5c793b",
+      measurementId: "G-3J47N33NH9"
+    };
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth();
+      const provider = new GoogleAuthProvider();
+
+      const login = document.getElementById("login");
+      login.addEventListener("click", () => {
+          signInWithPopup(auth, provider).then(() => {
+              window.location.replace("/");
+          document.getElementById("login").innerHTML = ("Change Account");
+          });
+      });
+      import {
+          getFirestore,
+          getDocs,
+          collection,
+      } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+      const db = getFirestore();
+      const div = document.getElementById("div");
+    
+      const posts = await getDocs(collection(db, "sparks"));
+          posts.forEach((doc) => {
+              const element = document.createElement("div");
+              const spark = document.createElement("h1");
+              spark.innerText =
+                  doc.data().spark;
+              element.appendChild(spark);
+              postsContainer.appendChild(element);
+          });
+  </script>
+
+</body>
+
+</html>
