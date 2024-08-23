@@ -43,13 +43,9 @@
           signInWithPopup(auth, provider).then(() => {
               window.location.replace("/");
           document.getElementById("login").innerHTML = ("Change Account");
+          window.redirect = "scratch.mit.edu";
           });
       });
-    firebase.auth().onAuthStateChanged(user => {
-  if(user) {
-    window.location = 'scratch.com'; //After successful login, user will be redirected to home.html
-  }
-});
       import {
           getFirestore,
           getDocs,
