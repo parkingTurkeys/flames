@@ -40,9 +40,9 @@
 
       const login = document.getElementById("login");
       login.addEventListener("click", () => {
-          signInWithPopup(auth, provider)
+          signInWithPopup(auth, provider).then(() => {
+              window.location.replace("index.html");
           document.getElementById("login").innerHTML = ("Change Account");
-          window.redirect = "scratch.mit.edu";
           });
       });
       import {
