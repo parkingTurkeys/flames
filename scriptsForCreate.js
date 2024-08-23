@@ -1,10 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
     import {
-        getAuth,
-        signInWithPopup,
-        GoogleAuthProvider,
-    } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
-    import {
         getFirestore,
         addDoc,
         doc,
@@ -20,16 +15,10 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebas
       measurementId: "G-3J47N33NH9"
     };
     const app = initializeApp(firebaseConfig);
-    const auth = getAuth();
 
     const db = getFirestore();
     form.addEventListener("submit", (e) => {
       e.preventDefault()
-      const currentUser = auth.currentUser;
-      if (!currentUser) {
-        alert("Please login first");
-        return;
-      }
       const form = document.getElementById("form");
       const spark = document.getElementById("spark");
       addDoc(collection(db, "sparks"), {
